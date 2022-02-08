@@ -12,3 +12,5 @@ console.log('hello bugfix');
 
 // rebase
 console.log('rebase');
+
+console.log('stash');
