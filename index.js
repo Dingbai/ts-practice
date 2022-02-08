@@ -8,10 +8,7 @@ console.log('bugfix rebase');
 console.log('b2');
 
 console.log('main');
-<<<<<<< HEAD
-=======
 console.log('hello bugfix');
 
 // rebase
 console.log('rebase');
->>>>>>> 6b29fc3 (rebase)
