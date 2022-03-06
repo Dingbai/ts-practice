@@ -21,32 +21,6 @@ namespace Chainable {
         }
     }
 
-    type ElementType<T> = T extends ReadonlyArray<infer U> ? ElementType<U> : T;
-    function deepFlatten<T extends readonly unknown[]>(x: T): ElementType<T>[] {
-        throw "not implemented";
-    }
-    // All of these return the type 'number[]':
-    // type a = typeof deepFlatten([1, 2, 3]);
-    deepFlatten([[1], [2, 3]]);
-    deepFlatten([[1], [[2]], [[[3]]]]);
-
-    // type Chainable = {
-    //     option: (key: string, value: any) => { key: typeof value },
-    //     get: () => Chainable,
-    // }
-
-    // 你的答案
-    // type Chainable<T = {}> = {
-    //     option<P extends string, V>(key: P, value: P extends keyof T ? T[P] : V): Chainable<T & { [props in P]: P extends keyof T ? T[P] : V }>
-    //     get(): T
-    // }
-    // 如果对象中已经有这个属性了，那这个属性的类型应该取最开始传入值的类型
-
-    // type Chainable<T extends object = {}> = {
-    //     option<M extends string, V extends any>(key: M, value: V): V extends infer P ? Chainable<{ [key in M]: P; } & T> : never;
-    //     get(): T;
-    // };
-
     type Chainable<T = {}> = {
         option<K extends string, V>(key: K, value: V): Chainable<T & { [key in K]: V }>
         get(): T,
