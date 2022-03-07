@@ -15,16 +15,7 @@ namespace LookUp {
         color: 'brown' | 'white' | 'black'
     }
 
-    type MyDog = LookUp<Cat | Dog, 'dog'> // expected to be `Dog`
-    type a = keyof Dog
+    type MyDog = LookUp<Cat | Dog, 'cat'> // expected to be `Dog`
 
-    // type LookUp<T, P> = {
-    //     p
-    // }
-
-    type LookUp<T, U extends unknown> = T extends infer R
-        ? R extends Record<"type", U>
-        ? R
-        : never
-        : never;
+    type LookUp<U, T> = U extends { type: T } ? U : never;
 }
