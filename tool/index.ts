@@ -20,4 +20,8 @@ namespace tool {
     type Pi = Pick<c, 'a'>
     type MyPick<T, K extends keyof T> = { [P in K]: T[P] }
     type pi1 = MyPick<c, 'a'>
+
+    type fn = () => { name: string }
+    type MyReturnParams<T> = T extends () => infer P ? P : T
+    type fn1 = MyReturnParams<fn>
 }
