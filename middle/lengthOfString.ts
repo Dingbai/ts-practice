@@ -1,8 +1,9 @@
 namespace lengthOfString {
-    type SplitStr<T extends string> = T extends `${infer F}${infer R}` ? [F, ...SplitStr<R>] : []
-    type str = SplitStr<'hello'>
+    type strToArr<T extends string> = T extends `${infer F}${infer R}` ? [F, ...strToArr<R>] : []
 
-    type LengthOfString<T extends string> = SplitStr<T>['length']
+    type str = strToArr<'hello'>
+
+    type LengthOfString<T extends string> = strToArr<T>['length']
 
     type str1 = LengthOfString<'hello'>
 }
