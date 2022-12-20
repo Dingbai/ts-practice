@@ -8,8 +8,8 @@ namespace merge {
         sex: string
     }
 
-    type Merge<T extends { [key in string]: any }, U extends { [key in string]: any }> = {
-        [K in keyof T | keyof U]: K extends keyof T ? T[K] : K extends keyof U ? U[K] : never
+    type Merge<T extends { [k in string]: any }, U extends { [k in string]: any }> = {
+        [k in keyof T | keyof U]: k extends keyof U ? U[k] : k extends keyof T ? T[k] : never
     }
 
     type Result = Merge<foo, coo>; // expected to be {name: string, age: number, sex: string}
