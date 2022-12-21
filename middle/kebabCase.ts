@@ -4,13 +4,11 @@ namespace kebabCase {
 
     type a = C<'hello'>
 
-    type KebabCase<S extends string> =
-        S extends `${infer First}${infer Rest}` ?
-        Rest extends Uncapitalize<Rest> ?
-        `${Uncapitalize<First>}${KebabCase<Rest>}` :
-        `${Uncapitalize<First>}-${KebabCase<Rest>}` :
-        S;
-
+    type KebabCase<T extends string> =
+        T extends `${infer F}${infer R}` ?
+        R extends Uncapitalize<R> ? `${Uncapitalize<F>}${KebabCase<R>}` :
+        `${Uncapitalize<F>}-${KebabCase<R>}` :
+        T
 
     type FooBarBaz = KebabCase<"FooBarBaz">;
     const foobarbaz: FooBarBaz = "foo-bar-baz";

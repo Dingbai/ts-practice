@@ -34,7 +34,7 @@ namespace diff {
 
     type Inclued<T, U> = T extends U ? T : never
 
-    type Diff<O, O1> = Omit<O & O1, keyof (O | O1)>;
+    type Diff<T, U> = Omit<T & U, keyof (T | U)>
 
     type Result1 = Diff<Foo, Bar> // { b: number, c: boolean }
     type Result2 = Diff<Bar, Foo> // { b: number, c: boolean }
